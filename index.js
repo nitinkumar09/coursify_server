@@ -16,7 +16,7 @@ app.use(cors({
         const allowedOrigins = [
             'http://localhost:5500',
             'http://127.0.0.1:5500',
-            'https://coursify-server-t8ou.onrender.com'
+            'https://coursify-ui.vercel.app'
         ];
 
         if (!origin || allowedOrigins.includes(origin)) {
@@ -28,6 +28,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'token']
 }));
+
 
 
 app.use(express.json());
