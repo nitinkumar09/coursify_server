@@ -12,11 +12,22 @@ const port = process.env.PORT || 3002;
 
 // CORS configuration
 app.use(cors({
-    origin: '*', // ⚠️ Only for testing! Remove in production.
+    origin: (origin, callback) => {
+        const allowedOrigins = [
+            'http://localhost:5500',
+            'http://127.0.0.1:5500',
+            'https://coursify-server-t8ou.onrender.com'
+        ];
+
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'token']
 }));
-
 
 
 app.use(express.json());
